@@ -41,6 +41,13 @@ db.serialize(() => {
     )`);
 });
 
+
+// Root route (ADD THIS)
+app.get("/", (req, res) => {
+    res.send("Real-Time Notes API is running");
+});
+
+
 // Routes
 app.use("/auth", authRoutes);
 app.use("/notes", auth, noteRoutes);
