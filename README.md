@@ -1,7 +1,7 @@
 # Real-Time Collaborative Notes Application
 
 ## Live Application Links
-Frontend (Vercel): https://real-time-notes-app-git-main-shaikhahmed29s-projects.vercel.app/  
+Frontend (Vercel): https://real-time-notes-app-git-main-shaikhahmed29s-projects.vercel.app/register 
 Backend (Render): https://realtimenotesapp-jrke.onrender.com  
 
 ---
