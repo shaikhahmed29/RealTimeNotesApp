@@ -38,7 +38,7 @@ function Notes() {
   };
 
   const updateNote = async () => {
-    await axios.put(`http://localhost:7000/notes/${currentNoteId}`, {
+    await axios.put(`https://realtimenotesapp-jrke.onrender.com//notes/${currentNoteId}`, {
       title,
       content
     });

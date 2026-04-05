@@ -7,7 +7,7 @@ function Register() {
   const [password, setPassword] = useState("");
 
   const register = async () => {
-    await axios.post("http://localhost:7000/auth/register", {
+    await axios.post("https://realtimenotesapp-jrke.onrender.com/", {
       name,
       email,
       password,

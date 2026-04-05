@@ -8,7 +8,7 @@ function Login() {
   const navigate = useNavigate();
 
   const login = async () => {
-    const res = await axios.post("http://localhost:7000/auth/login", {
+    const res = await axios.post("https://realtimenotesapp-jrke.onrender.com/", {
       email,
       password
     });
