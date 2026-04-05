@@ -2,7 +2,8 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { io } from "socket.io-client";
 
-const socket = io("http://localhost:7000");
+const API = "https://realtimenotesapp-jrke.onrender.com";
+const socket = io(API);
 
 function Notes() {
   const [notes, setNotes] = useState([]);
@@ -11,12 +12,12 @@ function Notes() {
   const [currentNoteId, setCurrentNoteId] = useState(null);
 
   const loadNotes = async () => {
-    const res = await axios.get("http://localhost:7000/notes");
+    const res = await axios.get(API + "/notes");
     setNotes(res.data);
   };
 
   const createNote = async () => {
-    await axios.post("http://localhost:7000/notes", {
+    await axios.post(API + "/notes", {
       title,
       content,
       ownerId: 1
@@ -26,7 +27,7 @@ function Notes() {
   };
 
   const deleteNote = async (id) => {
-    await axios.delete(`http://localhost:7000/notes/${id}`);
+    await axios.delete(API + "/notes/" + id);
     socket.emit("noteUpdated");
     loadNotes();
   };
@@ -38,7 +39,7 @@ function Notes() {
   };
 
   const updateNote = async () => {
-    await axios.put(`https://realtimenotesapp-jrke.onrender.com//notes/${currentNoteId}`, {
+    await axios.put(API + "/notes/" + currentNoteId, {
       title,
       content
     });
@@ -52,7 +53,6 @@ function Notes() {
     socket.on("noteUpdated", () => {
       loadNotes();
     });
-
   }, []);
 
   return (
