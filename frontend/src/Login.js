@@ -1,30 +1,41 @@
 import { useState } from "react";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+
+const API = "https://realtimenotesapp-jrke.onrender.com";
 
 function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const navigate = useNavigate();
 
   const login = async () => {
-    const res = await axios.post("https://realtimenotesapp-jrke.onrender.com/", {
-      email,
-      password
-    });
+    try {
+      const res = await axios.post(API + "/auth/login", {
+        email,
+        password
+      });
 
-    localStorage.setItem("token", res.data.token);
-    navigate("/notes");
+      localStorage.setItem("token", res.data.token);
+      alert("Login successful");
+      window.location = "/notes";
+    } catch (err) {
+      alert("Login failed");
+      console.log(err);
+    }
   };
 
   return (
     <div>
       <h2>Login</h2>
-      <input placeholder="Email" onChange={(e) => setEmail(e.target.value)} />
-      <input placeholder="Password" onChange={(e) => setPassword(e.target.value)} />
+      <input
+        placeholder="Email"
+        onChange={(e) => setEmail(e.target.value)}
+      />
+      <input
+        placeholder="Password"
+        type="password"
+        onChange={(e) => setPassword(e.target.value)}
+      />
       <button onClick={login}>Login</button>
-      <br/>
-      <a href="/register">Register</a>
     </div>
   );
 }

@@ -1,19 +1,23 @@
 import { useState } from "react";
 import axios from "axios";
 
+const API = "https://realtimenotesapp-jrke.onrender.com";
+
 function Register() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
   const register = async () => {
-    await axios.post("https://realtimenotesapp-jrke.onrender.com/", {
+    await axios.post(API + "/auth/register", {
       name,
       email,
       password,
-      role: "Admin"
+      role: "Editor"
     });
-    alert("Registered");
+
+    alert("Registered successfully");
+    window.location = "/";
   };
 
   return (

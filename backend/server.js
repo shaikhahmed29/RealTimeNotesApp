@@ -1,4 +1,3 @@
-
 const auth = require("./middleware/auth");
 const express = require("express");
 const cors = require("cors");
@@ -41,16 +40,15 @@ db.serialize(() => {
     )`);
 });
 
-
-// Root route (ADD THIS)
+// Root route
 app.get("/", (req, res) => {
     res.send("Real-Time Notes API is running");
 });
 
-
 // Routes
 app.use("/auth", authRoutes);
-app.use("/notes", auth, noteRoutes);
+app.use("/notes", noteRoutes);
+
 // Socket.io
 const server = http.createServer(app);
 const io = new Server(server, {
@@ -69,6 +67,8 @@ io.on("connection", (socket) => {
     });
 });
 
-server.listen(7000, () => {
-    console.log("Server running on port 7000");
+// IMPORTANT FOR RENDER
+const PORT = process.env.PORT || 7000;
+server.listen(PORT, () => {
+    console.log("Server running on port " + PORT);
 });
